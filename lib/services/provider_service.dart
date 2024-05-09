@@ -26,7 +26,7 @@ class ProviderService extends ChangeNotifier {
     );
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.get(url, headers: {'authorization': basicAuth});
-    final provsMap = Provider.fromJson(response.body);
+    final provsMap = ProviderModel.fromJson(response.body);
     print(response.body);
     provider = provsMap.listado;
     isLoading = false;
