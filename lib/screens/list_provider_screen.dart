@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_examfinal_gsa/models/models.dart';
+<<<<<<< HEAD
 import 'package:flutter_app_examfinal_gsa/models/provider_model.dart';
 import 'package:flutter_app_examfinal_gsa/screens/loading_screen.dart';
+=======
+import 'package:flutter_app_examfinal_gsa/screens/screens.dart';
+>>>>>>> 412a86c (actualizacion de librerias)
 import 'package:flutter_app_examfinal_gsa/services/services.dart';
 import 'package:flutter_app_examfinal_gsa/widgets/widgets.dart';
 import 'package:provider/provider.dart';
