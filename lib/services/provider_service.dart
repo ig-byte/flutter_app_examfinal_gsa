@@ -38,8 +38,10 @@ class ProviderService extends ChangeNotifier {
     notifyListeners();
     if (provider.ProveedorId == 0) {
       await this.createProv(provider);
+      print(provider);
     } else {
       await this.updateProv(provider);
+      print(provider);
     }
 
     isEditCreate = false;

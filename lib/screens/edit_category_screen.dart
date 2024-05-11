@@ -68,9 +68,12 @@ class _CategoriaScreenBody extends StatelessWidget {
 
 class _CategoriaForm extends StatelessWidget {
   @override
+  void setState(VoidCallback fn) {}
+
   Widget build(BuildContext context) {
     final categoriaForm = Provider.of<CategoryFormProvider>(context);
     final categoria = categoriaForm.categoria;
+    bool _isActive = true;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -88,20 +91,34 @@ class _CategoriaForm extends StatelessWidget {
                 onChanged: (value) => categoria.CategoryName = value,
                 validator: (value) {
                   if (value == null || value.length < 1)
-                    return 'el nombre es obligatorio';
+                    return 'Campo obligatorio';
                 },
                 decoration: InputDecorations.authInputDecoration(
-                  hinText: 'Nombre del categoriao',
+                  hinText: 'Indica la categoria',
                   labelText: 'Nombre',
                 ),
               ),
               const SizedBox(height: 20),
-              SwitchListTile.adaptive(
-                value: true,
-                onChanged: (value) {},
-                activeColor: Colors.orange,
-                title: const Text('Activo'),
-              )
+              StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return SwitchListTile.adaptive(
+                    value: categoria.CategoryState == 'Activa' ? true : false,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value) {
+                          print(categoria.CategoryState);
+                          categoria.CategoryState = 'Activa';
+                        } else {
+                          print(categoria.CategoryState);
+                          categoria.CategoryState = 'Inactiva';
+                        }
+                      });
+                    },
+                    activeColor: Colors.orange,
+                    title: const Text('Activa'),
+                  );
+                },
+              ),
             ],
           ),
         ),

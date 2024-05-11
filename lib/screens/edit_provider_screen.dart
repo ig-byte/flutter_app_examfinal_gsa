@@ -47,7 +47,7 @@ class _ProvScreenBody extends StatelessWidget {
               if (!proveedorForm.isValidForm()) return;
               await proveedorService.deleteProv(
                   proveedorForm.proveedor, context);
-              print("asdasdsadsadsadsa");
+              print("puntodeprueba");
             },
             heroTag: null,
           ),
