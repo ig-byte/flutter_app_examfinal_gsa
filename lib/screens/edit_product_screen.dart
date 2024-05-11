@@ -91,6 +91,12 @@ class _ProductForm extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                initialValue:
+                    product.productImage.isEmpty ? '' : product.productImage,
+                onChanged: (value) => product.productImage = value,
+                // Resto del código...
+              ),
+              TextFormField(
                 initialValue: product.productName,
                 onChanged: (value) => product.productName = value,
                 validator: (value) {
@@ -119,14 +125,28 @@ class _ProductForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              SwitchListTile.adaptive(
-                value: true,
-                onChanged: (value) {},
-                activeColor: Colors.orange,
-                title: const Text('Disponible'),
-              )
+              StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return SwitchListTile.adaptive(
+                    value: product.productState == 'Activa' ? true : false,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value) {
+                          print(product.productState);
+                          product.productState = 'Activa';
+                        } else {
+                          print(product.productState);
+                          product.productState = 'Inactiva';
+                        }
+                      });
+                    },
+                    activeColor: Colors.orange,
+                    title: Text(product.productState),
+                  );
+                },
+              ),
             ],
-          ),
+          ), // Add closing parenthesis here
         ),
       ),
     );

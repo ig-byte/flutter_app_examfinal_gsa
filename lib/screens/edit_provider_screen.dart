@@ -69,6 +69,7 @@ class _ProvScreenBody extends StatelessWidget {
 
 class _ProvForm extends StatelessWidget {
   @override
+  void setState(VoidCallback fn) {}
   Widget build(BuildContext context) {
     final provForm = Provider.of<ProveedorFormProvider>(context);
     final prov = provForm.proveedor;
@@ -121,12 +122,26 @@ class _ProvForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              SwitchListTile.adaptive(
-                value: true,
-                onChanged: (value) {},
-                activeColor: Colors.orange,
-                title: const Text('Activo'),
-              )
+              StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return SwitchListTile.adaptive(
+                    value: prov.ProveedorState == 'Activa' ? true : false,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value) {
+                          print(prov.ProveedorState);
+                          prov.ProveedorState = 'Activa';
+                        } else {
+                          print(prov.ProveedorState);
+                          prov.ProveedorState = 'Inactiva';
+                        }
+                      });
+                    },
+                    activeColor: Colors.orange,
+                    title: Text(prov.ProveedorState),
+                  );
+                },
+              ),
             ],
           ),
         ),

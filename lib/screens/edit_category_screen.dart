@@ -115,7 +115,7 @@ class _CategoriaForm extends StatelessWidget {
                       });
                     },
                     activeColor: Colors.orange,
-                    title: const Text('Activa'),
+                    title: Text(categoria.CategoryState),
                   );
                 },
               ),
